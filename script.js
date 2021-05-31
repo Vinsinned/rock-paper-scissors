@@ -14,20 +14,6 @@ function computerPlay() {
     }
 }
 //Player chooses rock, paper, or scissors, and if not, then do it again until done
-function playerPlay() {
-    let playerSelection = prompt("Please choose either rock, paper, or scissors");
-    let playerChoice = playerSelection.toLowerCase();
-    if (playerChoice == "rock") {
-        return("rock");
-    } else if (playerChoice == "paper") {
-        return ("paper");
-    } else if (playerChoice == "scissor" || playerChoice == "scissors") {
-        return ("scissors");
-    } else {
-        alert("Sorry, but please try again");
-        return playerPlay();
-    }
-}
 //Plays a single round which takes the player's choice and computer's choice and see whether the player or the computer wins
 function playGame(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
@@ -49,24 +35,28 @@ function playGame(playerSelection, computerSelection) {
         computerScore += 1;
         return ("You lost! Scissors losses to rock");
     } else {
-        return ("It's a tie!")
+        return ("It's a tie!");
     }
 }
-//combines all of the other function and plays a 5 round game, keeping scores and telling them to the player after each round is over
-function game() {
-    for (i = 0; i < 5; i++) {
-        alert(playGame(playerPlay(), computerPlay()));
-        alert(score + " to " + computerScore);
-    }
-    if (score > computerScore) {
-        alert("You have won this game!");
-        return ("Winner");
-    } else if (computerScore > score) {
-        alert("Better luck next time!");
-        return ("Loser");
+//change the button id into one of the choices
+function transferId() {
+    if (playerSelection == "1") {
+        return ("rock");
+    } else if (playerSelection == "2") {
+        return ("paper");
+    } else if (playerSelection == "3") {
+        return ("scissors");
     } else {
-        alert("It was a TIE!");
-        return ("tie");
+        return ("Something went WRONG");
     }
 }
 //Used alert instead of console.log as it is easier to see the score, easy to change later
+const buttons = document.querySelectorAll('button');
+let playerSelection = '';
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playerSelection = button.id;
+            transferId();
+            playGame(transferId(), computerPlay());
+        });
+    });

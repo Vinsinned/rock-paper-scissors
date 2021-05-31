@@ -24,3 +24,9 @@ button:hover {
     transition-duration: 500ms;
     color: white;
 }
+#results {
+    border: 1px solid black;
+    width: 50%;
+    position: relative;
+    height: 40px;
+}
