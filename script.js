@@ -1,5 +1,7 @@
 let score = 0;
 let computerScore = 0;
+const buttons = document.querySelectorAll('button');
+const roundResults = document.querySelector('#results');
 //Computer chooses rock, paper, or scissors randomly
 function computerPlay() {
     let random = Math.floor(Math.random()*3) + 1;
@@ -13,29 +15,60 @@ function computerPlay() {
         return ("ERROR, PLEASE DEBUG YOUR CODE");
     }
 }
-//Player chooses rock, paper, or scissors, and if not, then do it again until done
-//Plays a single round which takes the player's choice and computer's choice and see whether the player or the computer wins
+function deleteChild() {
+    
+}
+//check if the player wins or loses and how
 function playGame(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
+
         score += 1;
-        return ("You won! Rock defeats scissors");
+        const rockScissors = document.createElement('p');
+        rockScissors.textContent = "You won! Rock defeats scissors";
+        roundResults.appendChild(rockScissors);
+        return;
+
     } else if (playerSelection == "rock" && computerSelection == "paper") {
+
         computerScore += 1;
-        return ("You lost! Rock loses to paper");
+        const rockPaper = document.createElement('p');
+        rockPaper.textContent = "You lost! Rock loses to paper";
+        return roundResults.appendChild(rockPaper);
+
     } else if (playerSelection == "paper" && computerSelection == "rock") {
+
         score += 1;
-        return ("You won! Paper defeats rock");
+        const paperRock = document.createElement('p');
+        paperRock.textContent = "You won! Paper defeats rock";
+        return roundResults.appendChild(rockPaper);
+
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
+
         computerScore += 1;
-        return ("You lost! Paper loses to scissors");
+        const paperScissor = document.createElement('p');
+        paperScissor.textContent = "You lost! Paper loses to scissors";
+        return roundResults.appendChild(rockScissor);
+
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
+
         score += 1;
-        return ("You won! Scissors defeats paper");
+        const scissorPaper = document.createElement('p');
+        scissorPaper.textContent = "You won! Scissors defeats paper";
+        return roundResults.appendChild(scissorPaper);
+
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
+
         computerScore += 1;
-        return ("You lost! Scissors losses to rock");
+        const scissorRock = document.createElement('p');
+        scissorRock.textContent = "You lost! Scissors losses to rock";
+        return roundResults.appendChild(scissorRock);
+
     } else {
-        return ("It's a tie!");
+
+        const tie = document.createElement('p');
+        tie.textContent = "It's a tie!";
+        return roundResults.appendChild(tie);
+
     }
 }
 //change the button id into one of the choices
@@ -50,8 +83,8 @@ function transferId() {
         return ("Something went WRONG");
     }
 }
-//Used alert instead of console.log as it is easier to see the score, easy to change later
-const buttons = document.querySelectorAll('button');
+
+//Once the player chooses a button, it calls back the other functions to run.
 let playerSelection = '';
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
