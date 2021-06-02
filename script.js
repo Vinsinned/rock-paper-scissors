@@ -105,9 +105,18 @@ function transferId() {
 //Once the player chooses a button, it calls back the other functions to run.
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            playerSelection = button.id;
-            transferId();
-            playGame(transferId(), computerPlay());
+                playerSelection = button.id;
+                transferId();
+                playGame(transferId(), computerPlay());
+                if (score == 5) {
+                    alert("You won!")
+                    score = 0;
+                    computerScore = 0;
+                } else if (computerScore == 5) {
+                    alert("You lost...")
+                    score = 0;
+                    computerScore = 0;
+                }
         });
     });
 //adds the paragraph created earlier as a child of the results div
